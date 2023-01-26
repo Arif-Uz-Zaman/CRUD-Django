@@ -1,0 +1,21 @@
+{% comment %} <a href="{% url 'news_create' %}">Create</a>
+{% for news in news_list %}
+    <h1>{{ news.name }}</h1>
+    <p>{{ news.description }}</p>
+    <img src="{{ news.image.url }}" alt="{{ news.title }}" width="150" height="150">
+    <p></p>
+    <a href="{% url 'news_update' pk=news.pk %}">Update</a>
+    <a href="{% url 'news_delete' pk=news.pk %}" onclick="return confirm('Are you sure?')">Delete</a>
+{% endfor %} {% endcomment %}
+
+
+<h1><b>Welcome to the daily news</b></h1>
+<button type="button" class="btn btn-primary" onclick="window.location='{% url 'news_create' %}';">Create</button>
+{% for news in news_list %}
+    <h1>{{ news.name }}</h1>
+    <p>{{ news.description }}</p>
+    <img src="{{ news.image.url }}" alt="{{ news.title }}" width="150" height="150">
+    <button type="button" class="btn btn-warning" onclick="window.location='{% url 'news_update' pk=news.pk %}';">Update</button>
+    <button type="button" class="btn btn-danger" onclick="if(confirm('Are you sure?')){window.location='{% url 'news_delete' pk=news.pk %}';}">Delete</button>
+{% endfor %}
+
